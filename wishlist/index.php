@@ -2,8 +2,8 @@
 
 $INTRO = <<< INTRO
 Hello there! BookWishlist is an easy web application that helps you to collect and keep track of the books you want to read. 
-You can easily organize your wishlist by simply adding the book information on the WISHLIST page. 
-Go ahead and add it to your wishlist.
+You can easily organize your wishlist by simply adding the book information on the WISH LIST page. 
+Feel free to navigate to WISH LIST button above and add it.
 INTRO;
 ?>
 
@@ -18,19 +18,20 @@ INTRO;
 
 <div id="wrapper">
     <header>
-        <?php include 'templates/header.php'?>
+        <?php include 'templates/header.html'?>
     </header>
 
     <nav>
-        <?php include 'templates/navigation.php'?>
+        <?php include 'templates/navigation.html'?>
     </nav>
 
     <main>
+        <br/>
         <p> <?php echo $INTRO ?> <br> </p>
     </main>
 
     <footer>
-        <?php include 'templates/footer.php'?>
+        <?php include 'templates/footer.html'?>
     </footer>
 
 </div> <!-- end wrapper-->

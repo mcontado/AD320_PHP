@@ -11,11 +11,11 @@
     <div id="wrapper">
 
         <header>
-            <?php include 'templates/header.php'?>
+            <?php include 'templates/header.html'?>
         </header>
 
         <nav>
-            <?php include 'templates/navigation.php'?>
+            <?php include 'templates/navigation.html'?>
         </nav>
 
         <main>
@@ -27,20 +27,19 @@
             $isbn = $_POST['isbn'];
 
 
-            echo "<h1>";
-            echo "The following book has been added to the wish list.";
-            echo "</h1>";
+            echo "<br/> <p>";
+            echo "The following book has been added to the wish list: " . "<br/><br/>";
             echo "Name :". $name . "<br />";
             echo "Author: ". $author . "<br/>";
             echo "Genre: " . $genre . " <br/>";
             echo "ISBN: " .$isbn ."<br/> <br/>";
             echo "Redirecting to Home page in 5 seconds...";
-
+            echo "</p>";
             ?>
         </main>
 
         <footer>
-            <?php include 'templates/footer.php'?>
+            <?php include 'templates/footer.html'?>
         </footer>
 
     </div> <!-- end wrapper-->

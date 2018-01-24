@@ -8,11 +8,11 @@
 <body>
     <div id="wrapper">
         <header>
-            <?php include 'templates/header.php'?>
+            <?php include 'templates/header.html'?>
         </header>
 
         <nav>
-            <?php include 'templates/navigation.php'?>
+            <?php include 'templates/navigation.html'?>
         </nav>
 
         <main>
@@ -45,7 +45,7 @@
         </main>
 
         <footer>
-            <?php include 'templates/footer.php'?>
+            <?php include 'templates/footer.html'?>
         </footer>
 
     </div> <!-- end wrapper-->
