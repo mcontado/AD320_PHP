@@ -1,1 +1,0 @@
-<img id="banner" src="images/wishlist.png" alt="Banner">
