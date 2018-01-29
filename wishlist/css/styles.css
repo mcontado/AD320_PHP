@@ -34,7 +34,7 @@ nav {
 nav li {
     float:left;
     list-style-type:none; /*get rid of the bullets */
-    width: 50%;
+    width: 33.33%;
     text-align:center;
 }
 
