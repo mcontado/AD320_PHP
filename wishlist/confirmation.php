@@ -1,27 +1,26 @@
-<?php header("refresh: 5; url=index.php");
+<?php
+require('dbconnection.php');
+ $name = filter_input(INPUT_POST, 'name');
+ $author = filter_input(INPUT_POST, 'author');
+ $genre = filter_input(INPUT_POST, 'genre');
+ $isbn = filter_input(INPUT_POST, 'isbn');
+ $description = filter_input(INPUT_POST, 'description');
 
- require('dbconnection.php');
 
-            $name = $_POST['name'];
-            $author = $_POST['author'];
-            $genre = $_POST['genre'];
-            $isbn = $_POST['isbn'];
-            $description = $_POST['description'];
+    $query = 'INSERT INTO books
+                 (bookId, name, author, genreId, isbn, description)
+          VALUES
+                (NULL, :name, :author, :genre, :isbn, :description)';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':name', $name);
+    $statement->bindValue(':author', $author);
+    $statement->bindValue(':genre', $genre);
+    $statement->bindValue(':isbn', $isbn);
+    $statement->bindValue(':description', $description);
 
-            // Add the book to the database
-            $query = 'INSERT INTO books
-                 (name, author, genre, isbn, description)
-              VALUES
-                 (:name, :author, :genre, :isbn, :description)';
-            $statement = $db->prepare($query);
-            $statement->bindValue(':name', $name);
-            $statement->bindValue(':author', $author);
-            $statement->bindValue(':genre', $genre);
-            $statement->bindValue(':isbn', $isbn);
-            $statement->bindValue(':description', $description);
+    $statement->execute();
+    $statement->closeCursor();
 
-            $statement->execute();
-            $statement->closeCursor();
 
 ?>
 
@@ -53,7 +52,7 @@
             echo "Description: ". $description . "<br/>";
             echo "Genre: " . $genre . " <br/>";
             echo "ISBN: " .$isbn ."<br/> <br/>";
-            echo "Redirecting to Home page in 5 seconds...";
+
             echo "</p>";
             ?>
         </main>
