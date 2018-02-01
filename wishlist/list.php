@@ -48,7 +48,10 @@ $sqlGenre->closeCursor();
 
                  <?php foreach ($books as $book) : ?>
                      <tr>
-                         <td><?php echo $book['name']; ?></td>
+                         <td>
+                             <?php echo $book['name']; ?> <br>
+                             <a href="related.php" target="_blank"> Related </a>
+                         </td>
                          <td><?php echo $book['author']; ?></td>
                          <td><?php echo $book['genreName']; ?></td>
                          <td><?php echo $book['isbn']; ?></td>

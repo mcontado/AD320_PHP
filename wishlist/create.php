@@ -7,6 +7,7 @@ $statement = $db->prepare($query);
 $statement->execute();
 $genres = $statement->fetchAll();
 $statement->closeCursor();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,18 +15,19 @@ $statement->closeCursor();
 <script type="text/javascript">
     function validateForm() {
 
-        var name=document.forms["wishListForm"]["name"].value;
+        var name= document.forms["wishListForm"]["name"].value;
         if (name == null || name == "")
         {
             alert("Name must be filled out");
             return false;
         }
 
-        var author =document.forms["wishListForm"]["author"].value;
+        var author = document.forms["wishListForm"]["author"].value;
         if (author == null || author == "") {
             alert("Author name must be filled out");
             return false;
         }
+
     }
 </script>
 

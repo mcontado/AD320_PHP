@@ -1,4 +1,5 @@
 <?php
+header("refresh: 5; url=index.php");
 require('dbconnection.php');
  $name = filter_input(INPUT_POST, 'name');
  $author = filter_input(INPUT_POST, 'author');
@@ -6,7 +7,19 @@ require('dbconnection.php');
  $isbn = filter_input(INPUT_POST, 'isbn');
  $description = filter_input(INPUT_POST, 'description');
 
+$dupeIsbnQuery = "select  *
+             from books 
+             where isbn = '$isbn'";
+$stmtDupe = $db->prepare($dupeIsbnQuery);
+$stmtDupe->execute();
+$rowCount = $stmtDupe->rowCount();
 
+if ($rowCount > 0) {
+    // There is an existing ISBN number.
+    $isDupeISBN = true;
+} else {
+    $isDupeISBN = false;
+    // No existing ISBN, therefore add it to the books table
     $query = 'INSERT INTO books
                  (bookId, name, author, genreId, isbn, description)
           VALUES
@@ -21,6 +34,7 @@ require('dbconnection.php');
     $statement->execute();
     $statement->closeCursor();
 
+}
 
 ?>
 
@@ -44,15 +58,23 @@ require('dbconnection.php');
 
         <main>
             <?php
+            if ($isDupeISBN) {
+                echo "<br/> <p>";
+                echo "Duplicate ISBN, please enter unique ISBN for each book. ";
+                echo "</p>";
+            } else {
+                echo "<br/> <p>";
+                echo "The following book has been added to the wish list: " . "<br/><br/>";
+                echo "Name :". $name . "<br />";
+                echo "Author: ". $author . "<br/>";
+                echo "Description: ". $description . "<br/>";
+                echo "Genre: " . $genre . " <br/>";
+                echo "ISBN: " .$isbn ."<br/> <br/>";
 
+                echo "</p>";
+            }
             echo "<br/> <p>";
-            echo "The following book has been added to the wish list: " . "<br/><br/>";
-            echo "Name :". $name . "<br />";
-            echo "Author: ". $author . "<br/>";
-            echo "Description: ". $description . "<br/>";
-            echo "Genre: " . $genre . " <br/>";
-            echo "ISBN: " .$isbn ."<br/> <br/>";
-
+            echo "Redirecting to Home page in 5 seconds...";
             echo "</p>";
             ?>
         </main>
