@@ -141,13 +141,19 @@ section {
 table {
     border: 1px solid black;
     border-collapse: collapse;
-    width: 800px;
+    width: 720px;
+    margin: 10px auto;
 }
+
 td, th {
     border: 1px dashed black;
     padding: .2em .5em .2em .5em;
     vertical-align: top;
     text-align: left;
     font-size: .75em;
+}
+
+td.isbn, td.genre {
+    width: 100px;
 }
 

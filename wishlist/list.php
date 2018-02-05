@@ -2,7 +2,7 @@
 require('dbconnection.php');
 
 // List all books
-$queryBooks = 'SELECT name, author, isbn, genreName, description
+$queryBooks = 'SELECT name, author, isbn, b.genreId, genreName, description
                FROM books b
                INNER JOIN genres g on g.genreId = b.genreId';
 $statement= $db->prepare($queryBooks);
@@ -50,11 +50,11 @@ $sqlGenre->closeCursor();
                      <tr>
                          <td>
                              <?php echo $book['name']; ?> <br>
-                             <a href="related.php" target="_blank"> Related </a>
+                             <a href="related.php?genreId=<?= $book['genreId']; ?>" target="_blank"> Related </a>
                          </td>
                          <td><?php echo $book['author']; ?></td>
-                         <td><?php echo $book['genreName']; ?></td>
-                         <td><?php echo $book['isbn']; ?></td>
+                         <td class="genre"><?php echo $book['genreName']; ?></td>
+                         <td class="isbn"><?php echo $book['isbn']; ?></td>
                          <td><?php echo $book['description']; ?></td>
                      </tr>
                  <?php endforeach; ?>
