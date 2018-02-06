@@ -17,6 +17,7 @@ $statement->closeCursor();
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>WISHLIST</title>
     <link rel="stylesheet" href="css/styles.css" type="text/css"/>
@@ -54,6 +55,9 @@ $statement->closeCursor();
                     </tr>
                 <?php endforeach; ?>
             </table>
+
+            <input type="button" onclick="window.history.back();" value="Go Back"/>
+
         </section>
 
     </main>

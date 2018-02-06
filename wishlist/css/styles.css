@@ -157,3 +157,7 @@ td.isbn, td.genre {
     width: 100px;
 }
 
+a:visited {
+    text-decoration: none;
+}
+

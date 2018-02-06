@@ -50,7 +50,7 @@ $sqlGenre->closeCursor();
                      <tr>
                          <td>
                              <?php echo $book['name']; ?> <br>
-                             <a href="related.php?genreId=<?= $book['genreId']; ?>" target="_blank"> Related </a>
+                             <a href="related.php?genreId=<?= $book['genreId']; ?>" target="_self"> Related </a>
                          </td>
                          <td><?php echo $book['author']; ?></td>
                          <td class="genre"><?php echo $book['genreName']; ?></td>

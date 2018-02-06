@@ -1,11 +1,12 @@
 <?php
 header("refresh: 5; url=index.php");
 require('dbconnection.php');
- $name = filter_input(INPUT_POST, 'name');
- $author = filter_input(INPUT_POST, 'author');
- $genre = filter_input(INPUT_POST, 'genre');
- $isbn = filter_input(INPUT_POST, 'isbn');
- $description = filter_input(INPUT_POST, 'description');
+
+$name = $_POST['name'];
+$author = $_POST['author'];
+$genre = $_POST['genre'];
+$isbn = $_POST['isbn'];
+$description = $_POST['description'];
 
 $dupeIsbnQuery = "select  *
              from books 
