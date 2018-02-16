@@ -36,31 +36,28 @@ $sqlGenre->closeCursor();
     </nav>
 
     <main>
-        <section>
-             <table>
-                 <tr>
-                     <th>Book</th>
-                     <th>Author</th>
-                     <th>Genre</th>
-                     <th>ISBN</th>
-                     <th>Description</th>
-                 </tr>
+        <table>
+            <tr>
+                <th>Book</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>ISBN</th>
+                <th>Description</th>
+            </tr>
 
-                 <?php foreach ($books as $book) : ?>
-                     <tr>
-                         <td>
-                             <?php echo $book['name']; ?> <br>
-                             <a href="related.php?genreId=<?= $book['genreId']; ?>" target="_self"> Related </a>
-                         </td>
-                         <td><?php echo $book['author']; ?></td>
-                         <td class="genre"><?php echo $book['genreName']; ?></td>
-                         <td class="isbn"><?php echo $book['isbn']; ?></td>
-                         <td><?php echo $book['description']; ?></td>
-                     </tr>
+            <?php foreach ($books as $book) : ?>
+                <tr>
+                    <td>
+                        <?php echo $book['name']; ?> <br>
+                        <a href="related.php?genreId=<?= $book['genreId']; ?>" target="_self"> Related </a>
+                    </td>
+                    <td><?php echo $book['author']; ?></td>
+                    <td class="genre"><?php echo $book['genreName']; ?></td>
+                    <td class="isbn"><?php echo $book['isbn']; ?></td>
+                    <td><?php echo $book['description']; ?></td>
+                </tr>
                  <?php endforeach; ?>
-             </table>
-        </section>
-
+        </table>
     </main>
 
     <footer>

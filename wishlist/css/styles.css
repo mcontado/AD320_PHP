@@ -132,12 +132,6 @@ legend {
     background-color:#EFF4F8;
 }
 
-section {
-    float: left;
-    width: 500px;
-    padding-bottom: 1.5em;
-}
-
 table {
     border: 1px solid black;
     border-collapse: collapse;
