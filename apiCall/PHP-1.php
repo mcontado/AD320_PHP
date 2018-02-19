@@ -7,13 +7,9 @@
         <option value="chicago:il">Chicago</option>
     </select>
     <input type="submit">Show Current Weather</input>
-
 </form>
 
-
 <?php
-
-
 
 $city_state = $_GET['city'];
 
@@ -46,7 +42,7 @@ $data = curl_exec($ch);
 curl_close($ch);
 $json_output = json_decode($data);
 
-//print_r($json_output);
+print_r($json_output);
 
 //print the time at which we got this data
 $time_of_call = $json_output->current_observation->local_time_rfc822;
@@ -67,6 +63,5 @@ foreach($json_output as $k=>$v){
         print_r($value);
         echo '<br/>';
     }
-
 }
 ?>

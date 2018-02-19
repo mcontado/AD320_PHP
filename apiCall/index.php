@@ -14,10 +14,7 @@
         <option value="chicago:il">Chicago</option>
     </select>
     <input type="submit">Show Current Weather</input>
-
 </form>
-
-
 
 </body>
 </html>
