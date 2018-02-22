@@ -29,7 +29,7 @@ $statement->closeCursor();
 </nav>
 
 <body>
-    <div class="container">
+    <div class="container" style="margin-top:50px">
         <h2>Movie Form</h2>
 
         <form name="wishListForm" action="confirmation.php" onsubmit="return validateForm()" method="post">
@@ -51,19 +51,21 @@ $statement->closeCursor();
 
             <div class="form-group">
                 <label for="comment">Description:</label>
-                <textarea class="form-control" rows="3" id="description" placeholder="Enter description for movie" ></textarea>
+                <textarea class="form-control" rows="3" id="description" placeholder="Enter description for movie" name="description"></textarea>
             </div>
 
-
-            <div class="checkbox-grid">
-                <label for="genre">Genre:</label>
-                <?php foreach ($genres as $genre) : ?>
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="genre" value="<?php echo $genre['genreId']; ?>">
-                            <?php echo $genre['genreName']; ?> </label>
-                    </div>
-                <?php endforeach; ?>
+            <div class="form-group">
+                <label> Genre: </label>
+                <select class="form-control" name="genre">
+                    <?php foreach ($genres as $genre) : ?>
+                        <option value="<?php echo $genre['genreId']; ?>">
+                            <?php echo $genre['genreName']; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
+
+            <br>
 
             <button type="submit" class="btn btn-default">Add to Movie List</button>
         </form>
