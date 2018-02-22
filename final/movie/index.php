@@ -2,7 +2,7 @@
 
  $ch = curl_init();
 
- $url = "https://api.themoviedb.org/3/discover/movie?api_key=47096e9f413866406e8887e56411ced5&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
+ $url = "https://api.themoviedb.org/3/discover/movie?page=1&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=47096e9f413866406e8887e56411ced5";
 
  $baseImageUrl = "http://image.tmdb.org/t/p/w185/";
 
@@ -49,9 +49,9 @@ curl_setopt($ch, CURLOPT_HTTPGET, true);
         <?php
             foreach($results as $k=>$v){
 
-                foreach($v as $key => $value){
-
-                }
+//                foreach($v as $key => $value){
+//
+//                }
                 $posterPath = $v->poster_path;
                 $title = $v->title;
                 $overview = $v->overview;
