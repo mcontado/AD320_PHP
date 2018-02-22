@@ -1,7 +1,7 @@
 <?php
 require('dbconnection.php');
 require('./model/movie_db.php');
-// List all books
+// List all movies
 $queryMovies= 'SELECT movieId, title, description, g.genreId, genreName, releaseYear, imdbId
                FROM MOVIE m
                INNER JOIN GENRE g on g.genreId = m.genreId';
