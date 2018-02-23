@@ -6,16 +6,16 @@
 
  $baseImageUrl = "http://image.tmdb.org/t/p/w185/";
 
- //Set the URL that you want to GET by using the CURLOPT_URL option.
-curl_setopt($ch, CURLOPT_URL, $url);
- //Set CURLOPT_RETURNTRANSFER so that the content is returned as a variable.
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
- //Set CURLOPT_FOLLOWLOCATION to true to follow redirects.
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
- //Set method to GET
-curl_setopt($ch, CURLOPT_HTTPGET, true);
+     //Set the URL that you want to GET by using the CURLOPT_URL option.
+    curl_setopt($ch, CURLOPT_URL, $url);
+     //Set CURLOPT_RETURN TRANSFER so that the content is returned as a variable.
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+     //Set CURLOPT_FOLLOW LOCATION to true to follow redirects.
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+     //Set method to GET
+    curl_setopt($ch, CURLOPT_HTTPGET, true);
 
-//Execute the request.
+    //Execute the request.
     $data = curl_exec($ch);
 
     //Close the cURL handle.
@@ -43,7 +43,7 @@ curl_setopt($ch, CURLOPT_HTTPGET, true);
 
                 $posterPathUrl = $baseImageUrl.$posterPath;
 
-                echo '<div class="col-md-3">';
+                echo '<div class="col-md-2">';
                 echo '<div class="thumbnail">';
                 echo '<a href="'. $posterPathUrl .'" >';
                 echo '<img src= "'.$posterPathUrl.'"   alt="'.$title.'" style="width:100%">';

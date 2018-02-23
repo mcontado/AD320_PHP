@@ -48,7 +48,7 @@ $statement->closeCursor();
 
             <br>
 
-            <button type="submit" class="btn btn-default">Add to Movie List</button>
+            <button type="submit" class="btn btn-default">Add to Watch List</button>
         </form>
     <br>
 <?php include 'templates/footer.html'; ?>
