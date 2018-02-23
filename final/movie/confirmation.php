@@ -39,23 +39,7 @@ if ($rowCount > 0) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>MOVIE WISHLIST</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body style="height:1500px">
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <?php include 'templates/navigation.html' ?>
-    </nav>
-
-    <div class="container" style="margin-top:50px">
+<?php include 'templates/header.html'; ?>
 
         <?php
         if ($isDupeIMDBID) {
@@ -78,8 +62,4 @@ if ($rowCount > 0) {
         echo "</p>";
         ?>
 
-    </div> <!-- end div container-->
-
-
-</body>
-</html>
+<?php include 'templates/footer.html'; ?>

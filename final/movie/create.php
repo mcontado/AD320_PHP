@@ -9,27 +9,8 @@ $statement->closeCursor();
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>MOVIE WISHLIST</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+<?php include 'templates/header.html'; ?>
 
-
-</head>
-
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <?php include 'templates/navigation.html' ?>
-</nav>
-
-<body>
-    <div class="container" style="margin-top:50px">
         <h2>Movie Form</h2>
 
         <form name="wishListForm" action="confirmation.php" onsubmit="return validateForm()" method="post">
@@ -69,9 +50,5 @@ $statement->closeCursor();
 
             <button type="submit" class="btn btn-default">Add to Movie List</button>
         </form>
-
-
-    </div> <!-- end div container-->
-
-</body>
-</html>
+    <br>
+<?php include 'templates/footer.html'; ?>

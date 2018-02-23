@@ -1,8 +1,8 @@
 <?php
 require('dbconnection.php');
-
-// List all books
-$queryMovies= 'SELECT title, description, g.genreId, genreName, releaseYear, imdbId
+require('./model/movie_db.php');
+// List all movies
+$queryMovies= 'SELECT movieId, title, description, g.genreId, genreName, releaseYear, imdbId
                FROM MOVIE m
                INNER JOIN GENRE g on g.genreId = m.genreId';
 $statement= $db->prepare($queryMovies);
@@ -17,24 +17,9 @@ $sqlGenre->execute();
 $category = $sqlGenre->fetch();
 $sqlGenre->closeCursor();
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>MOVIE WISHLIST</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-</head>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <?php include 'templates/navigation.html' ?>
-</nav>
+<?php include 'templates/header.html'; ?>
 
-<body>
-    <div class="container" style="margin-top:50px">
         <h2>My Movie Wish List</h2>
 
         <table class="table table-hover">
@@ -60,12 +45,23 @@ $sqlGenre->closeCursor();
                         <td><?php echo $movie['releaseYear']; ?></td>
                         <td><?php echo $movie['imdbId']; ?></td>
                         <td><?php echo $movie['description']; ?></td>
-                        <td> <button type="submit" class="btn btn-default">Delete</button> </td>
+                        <td>
+                            <form action="." method="post">
+                                <input type="hidden" name="action"
+                                       value="delete_movie">
+
+                                <input type="hidden" name="movieId"
+                                       value="<?php echo $movie['movieId']; ?>">
+
+                                <button type="submit" class="btn btn-default">Delete</button>
+                            </form>
+
+
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-    </div>
-</body>
-</html>
+
+<?php include 'templates/footer.html'; ?>
 
