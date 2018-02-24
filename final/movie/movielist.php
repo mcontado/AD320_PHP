@@ -1,26 +1,13 @@
 <?php
 require('dbconnection.php');
-require('./model/movie_db.php');
-// List all movies
-$queryMovies= 'SELECT movieId, title, description, g.genreId, genreName, releaseYear, imdbId
-               FROM MOVIE m
-               INNER JOIN GENRE g on g.genreId = m.genreId';
-$statement= $db->prepare($queryMovies);
-$statement->execute();
-$movies= $statement->fetchAll();
-$statement->closeCursor();
+require('model/movie_db.php');
 
-// Get name for selected genre
-$queryGenres = 'SELECT * FROM genre';
-$sqlGenre= $db->prepare($queryGenres);
-$sqlGenre->execute();
-$category = $sqlGenre->fetch();
-$sqlGenre->closeCursor();
+$movies = list_all_movies();
 ?>
 
 <?php include 'templates/header.html'; ?>
 
-        <h2>My Movie Wish List</h2>
+        <h2>My WatchList</h2>
 
         <table class="table table-hover">
             <thead>
@@ -39,7 +26,7 @@ $sqlGenre->closeCursor();
                     <tr>
                         <td>
                             <?php echo $movie['title']; ?> <br>
-                            <a href="related.php?genreId=<?= $movie['genreId']; ?>" target="_self"> Related </a>
+                            <a href="relatedMovies.php?genreId=<?= $movie['genreId']; ?>" target="_self"> Related </a>
                         </td>
                         <td><?php echo $movie['genreName']; ?></td>
                         <td><?php echo $movie['releaseYear']; ?></td>
@@ -55,8 +42,6 @@ $sqlGenre->closeCursor();
 
                                 <button type="submit" class="btn btn-default">Delete</button>
                             </form>
-
-
                         </td>
                     </tr>
                 <?php endforeach; ?>
