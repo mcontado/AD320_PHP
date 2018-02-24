@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <script src="jQScript.js"></script>
+</head>
+<body>
+<div>
+    <h1>This doesn't change</h1>
+</div>
+<div id="demo">
+    <h2>The XMLHttpRequest Object</h2>
+    <button id="button1" type="button" onclick="loadDoc()">Change Content</button>
+</div>
+
+
+<div id="div1"><h2>Let jQuery AJAX Change This Text</h2>
+
+    <button id="button2">TEST load() method</button>
+</div>
+
+<div id="div3"><h2>Let jQuery AJAX Change This Text</h2>
+
+<button id="button3">Test Callback Function</button>
+
+</div>
+
+<div id="div4"><h2>Let jQuery AJAX Change This Text</h2></div>
+
+<button id="button4">Test Callback Function</button>
+
+<p><b>Start typing an author's name in the input field below:</b></p>
+<form>
+    Author ame: <input type="text" onkeyup="showHint(this.value)">
+</form>
+<p>Suggestions: <span id="txtHint"></span></p>
+
+<form>
+    <input type="text" size="30" onkeyup="showResult(this.value)">
+    <div id="livesearch"></div>
+</form>
+
+
+</body>
+</html>
