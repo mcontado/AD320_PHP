@@ -4,12 +4,12 @@ require('model/movie_db.php');
 
 $genreId = $_GET['genreId'];
 $moviesByGenre = movies_by_genre($genreId);
-
+$genre = get_genre_by_id($genreId);
 ?>
 
 <?php include 'templates/header.html'; ?>
 
-<h2>Movies by Genre</h2>
+<h2>Genre: <?php echo $genre; ?> </h2>
 
     <table class="table table-hover">
         <thead>

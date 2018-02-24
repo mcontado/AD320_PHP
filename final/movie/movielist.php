@@ -42,8 +42,6 @@ $movies = list_all_movies();
 
                                 <button type="submit" class="btn btn-default">Delete</button>
                             </form>
-
-
                         </td>
                     </tr>
                 <?php endforeach; ?>

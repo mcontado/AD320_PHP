@@ -20,6 +20,17 @@ function select_all_genres() {
     return $genres;
 }
 
+function get_genre_by_id($genreId) {
+    global $db;
+    $query = 'SELECT genreName FROM GENRE WHERE genreId = :genreId';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':genreId', $genreId);
+    $statement->execute();
+    $genreName = $statement->fetchAll();
+    $statement->closeCursor();
+    return $genreName;
+}
+
 function is_Dupe_IMDB_ID($imdbId) {
     global $db;
     $dupeImdbIDQuery = "SELECT  * FROM MOVIE 
@@ -76,7 +87,7 @@ function movies_by_genre($genreId) {
     $queryAllMoviesByGenre = "SELECT movieId, title, description, g.genreId, genreName, releaseYear, imdbId
                FROM MOVIE m
                INNER JOIN GENRE g on g.genreId = m.genreId 
-               WHERE b.genreId = :genreId";
+               WHERE g.genreId = :genreId";
     $statement= $db->prepare($queryAllMoviesByGenre);
     $statement->bindValue(':genreId', $genreId);
     $statement->execute();

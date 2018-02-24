@@ -24,6 +24,18 @@
 
     $results = $json_output->results;
 
+
+$action = filter_input(INPUT_POST, 'action');
+
+if ($action == 'delete_movie') {
+    $movieId = filter_input(INPUT_POST, 'movieId', FILTER_VALIDATE_INT);
+    if ($movieId != NULL) {
+        delete_movie($movieId);
+        header("Location : ./movielist.php");
+    }
+}
+
+
 ?>
 
 <?php include 'templates/header.html'; ?>
