@@ -1,10 +1,10 @@
 <?php
 require('dbconnection.php');
-require('model/movie_db.php');
+require('model/Movie.php');
 
 $genreId = $_GET['genreId'];
-$moviesByGenre = movies_by_genre($genreId);
-$genre = get_genre_by_id($genreId);
+$moviesByGenre = Movie::movies_by_genre($genreId);
+$genre = Movie::get_genre_by_id($genreId);
 
 ?>
 

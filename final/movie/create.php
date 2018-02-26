@@ -1,11 +1,8 @@
 <?php
 require('dbconnection.php');
-$query = 'SELECT *
-          FROM genre';
-$statement = $db->prepare($query);
-$statement->execute();
-$genres = $statement->fetchAll();
-$statement->closeCursor();
+require('model/Movie.php');
+
+$genres = Movie::select_all_genres();
 
 ?>
 

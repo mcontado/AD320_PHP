@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<!-- the head section -->
-<head>
-    <title>Wishlist</title>
-    <link rel="stylesheet" href="css/styles.css" type="text/css"/>
-</head>
-
-<!-- the body section -->
-<body>
-<div id="wrapper">
-
-    <nav>
-        <?php include 'templates/navigation.html'?>
-    </nav>
-
+<?php include 'templates/header.html'; ?>
     <main>
         <h1>Database Error</h1>
         <p>There was an error connecting to the database.</p>
@@ -22,6 +6,4 @@
         <p>&nbsp;</p>
     </main>
 
-</div> <!-- end div wrapper-->
-</body>
-</html>
+<?php include 'templates/footer.html'; ?>
