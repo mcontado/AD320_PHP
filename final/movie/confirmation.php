@@ -1,7 +1,7 @@
 <?php
 header("refresh: 5; url=index.php");
 require('dbconnection.php');
-require('model/movie_db.php');
+require('model/Movie.php');
 
 $movieTitle = $_POST['movieTitle'];
 $releaseYear = $_POST['releaseYear'];
@@ -9,10 +9,10 @@ $imdbId = $_POST['imdbId'];
 $description = $_POST['description'];
 $genre = $_POST['genre'];
 
-$isDupeImdbID = is_Dupe_IMDB_ID($imdbId);
+$isDupeImdbID = Movie::is_Dupe_IMDB_ID($imdbId);
 
 if (!$isDupeImdbID) {
-    add_movie($movieTitle, $releaseYear, $imdbId, $description, $genre);
+    Movie::add_movie($movieTitle, $releaseYear, $imdbId, $description, $genre);
 }
 
 ?>
