@@ -26,7 +26,7 @@ if (!$isDupeImdbID) {
     //The implode function is used to "join elements of an array with a string".
     $strValuesMovieIdGenreId = implode(',', $values);
 
-    // Update the MOVIE_GENRE table
+    // Update the MOVIE_GENRE table based in the latest inserted movieId
     Movie::update_movie_genre($strValuesMovieIdGenreId);
 }
 
@@ -48,19 +48,6 @@ if (!$isDupeImdbID) {
             echo "Genre: " . $genre . " <br/>";
             echo "IMDB ID: " .$imdbId ."<br/> <br/>";
 
-            echo '====================================' . '<br>';
-            $values = array();
-            if ($genreArrayList !== NULL) {
-                foreach ($genreArrayList as $key => $value) {
-                    echo $key . ' = ' .$value . '<br>';
-                    $values[] = '(' .$lastInsertedMovieId .',' .intval($value) . ')';
-                }
-            }
-
-            echo 'VALUES: ' .$values . '<br>';
-            $strBar = implode(',', $values);
-            echo 'strBar: ' .$strBar;
-            echo '====================================' . '<br>';
             echo "</p>";
         }
         echo "<br/> <p>";

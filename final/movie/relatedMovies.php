@@ -2,15 +2,21 @@
 require('dbconnection.php');
 require('model/Movie.php');
 
-$genreId = $_GET['genreId'];
-$moviesByGenre = Movie::movies_by_genre($genreId);
-$genre = Movie::get_genre_by_id($genreId);
-
+$movieId = $_GET['movieId'];
+$moviesByGenre = Movie::movies_by_genre($movieId);
 ?>
 
 <?php include 'templates/header.html'; ?>
 
-<h2><?php echo $genre; ?> </h2>
+<h3>
+    Genre:
+    <?php
+    $genresPerMovie = Movie::genres_per_movie($movieId);
+    foreach ($genresPerMovie as $genre) :
+        echo $genre['genreName'] . ' ';
+    endforeach;
+    ?>
+</h3>
 
     <table class="table table-hover">
         <thead>
