@@ -47,9 +47,6 @@
                 echo '<div class="thumbnail">';
                 echo '<a href="'. $posterPathUrl .'" >';
                 echo '<img src= "'.$posterPathUrl.'"   alt="'.$title.'" style="width:100%">';
-                echo '<div class="caption">';
-                echo '<p> '.$title.' </p>';
-                echo '</div>';
                 echo '</a> </div> </div> ';
 
             }
