@@ -13,6 +13,8 @@ $imdbId = $_POST['imdbId'];
 $description = $_POST['description'];
 $genre = $_POST['genre'];
 
+$genreName = Movie::get_genre_by_id($genre);
+
 $isDupeImdbID = Movie::is_Dupe_IMDB_ID($imdbId);
 
 if (!$isDupeImdbID) {
@@ -34,7 +36,7 @@ if (!$isDupeImdbID) {
             echo "Movie Title :". $movieTitle . "<br />";
             echo "Release Year: ". $releaseYear . "<br/>";
             echo "Description: ". $description . "<br/>";
-            echo "Genre: " . $genre . " <br/>";
+            echo "Genre: " . $genreName . " <br/>";
             echo "IMDB ID: " .$imdbId ."<br/> <br/>";
 
             echo "</p>";
