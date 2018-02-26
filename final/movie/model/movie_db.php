@@ -26,7 +26,7 @@ function get_genre_by_id($genreId) {
     $statement = $db->prepare($query);
     $statement->bindValue(':genreId', $genreId);
     $statement->execute();
-    $genreName = $statement->fetchAll();
+    $genreName = $statement->fetchColumn();
     $statement->closeCursor();
     return $genreName;
 }

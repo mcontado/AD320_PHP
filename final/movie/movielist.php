@@ -3,6 +3,18 @@ require('dbconnection.php');
 require('model/movie_db.php');
 
 $movies = list_all_movies();
+
+$action = filter_input(INPUT_POST, 'action');
+
+if ($action == 'delete_movie') {
+    $movieId = filter_input(INPUT_POST, 'movieId', FILTER_VALIDATE_INT);
+    if ($movieId != NULL) {
+        delete_movie($movieId);
+        header("Location: ./movielist.php");
+    }
+}
+
+
 ?>
 
 <?php include 'templates/header.html'; ?>
@@ -33,7 +45,7 @@ $movies = list_all_movies();
                         <td><?php echo $movie['imdbId']; ?></td>
                         <td><?php echo $movie['description']; ?></td>
                         <td>
-                            <form action="." method="post">
+                            <form action="movielist.php" method="post">
                                 <input type="hidden" name="action"
                                        value="delete_movie">
 

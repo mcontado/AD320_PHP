@@ -8,6 +8,11 @@ $statement->execute();
 $genres = $statement->fetchAll();
 $statement->closeCursor();
 
+$queryAuthor = 'select distinct(author) from books';
+$stmt = $db->prepare($queryAuthor);
+$stmt->execute();
+$authors = $stmt->fetchAll();
+$stmt->closeCursor();
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,6 +21,7 @@ $statement->closeCursor();
     <title>Wishlist</title>
     <link rel="stylesheet" href="css/styles.css" type="text/css"/>
     <script type="text/javascript" src="js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -38,7 +44,8 @@ $statement->closeCursor();
                     <input type="text" name="name">
 
                     <label> Author </label>
-                    <input type="text" name="author">
+                    <input type="text" name="author" onkeyup="showResult(this.value)">
+                    <div id="livesearch"></div>
 
                     <label> Description </label>
                     <input type="text" name="description">

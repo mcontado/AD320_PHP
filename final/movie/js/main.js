@@ -1,3 +1,4 @@
+
 function validateForm() {
 
     var movieTitle = document.forms["wishListForm"]["movieTitle"].value;
