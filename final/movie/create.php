@@ -34,15 +34,13 @@ $genres = Movie::select_all_genres();
 
             <div class="form-group">
                 <label> Genre: </label>
-                <select class="form-control" name="genre">
-                    <?php foreach ($genres as $genre) : ?>
-                        <option value="<?php echo $genre['genreId']; ?>">
+                <?php foreach ($genres as $genre) : ?>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="genre_list[]" value="<?php echo $genre['genreId']; ?>">
                             <?php echo $genre['genreName']; ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
+                    </label>
+                <?php endforeach; ?>
             </div>
-
             <br>
 
             <button type="submit" class="btn btn-default">Add to Watch List</button>

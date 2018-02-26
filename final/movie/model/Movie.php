@@ -32,24 +32,35 @@ class Movie {
         return $moviesByGenre;
     }
 
-    public static function add_movie($movieTitle, $releaseYear, $imdbId, $description, $genre) {
+    public static function add_movie($movieTitle, $releaseYear, $imdbId, $description) {
         $db = Database::getDB();
 
         $query = 'INSERT INTO MOVIE
-                 (movieId, title, releaseYear, imdbId, description, genreId)
+                 (movieId, title, releaseYear, imdbId, description)
               VALUES
-                (NULL, :movieTitle, :releaseYear, :imdbId, :description, :genreId);';
+                (NULL, :movieTitle, :releaseYear, :imdbId, :description);';
 
         $statement = $db->prepare($query);
         $statement->bindValue(':movieTitle', $movieTitle);
         $statement->bindValue(':releaseYear', $releaseYear);
         $statement->bindValue(':imdbId', $imdbId);
         $statement->bindValue(':description', $description);
-        $statement->bindValue(':genreId', $genre);
-
         $statement->execute();
         $statement->closeCursor();
 
+        // Get the last movie ID that was automatically generated
+        $movieId = $db->lastInsertId();
+
+       return $movieId;
+    }
+
+    public static function update_movie_genre($movieIdGenreId) {
+        $db = Database::getDB();
+
+        $query = "INSERT INTO MOVIE_GENRE (movieId, genreId) VALUES $movieIdGenreId;";
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $statement->closeCursor();
     }
 
     public static function delete_movie($movieId) {
