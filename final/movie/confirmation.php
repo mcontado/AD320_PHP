@@ -1,12 +1,18 @@
 <?php
-//header("refresh: 5; url=index.php");
+header("refresh: 5; url=index.php");
+
 require('dbconnection.php');
 require('model/Movie.php');
 
 $movieTitle = $_POST['movieTitle'];
 $releaseYear = $_POST['releaseYear'];
+if (empty($releaseYear)) {
+    $releaseYear = NULL;
+}
 $imdbId = $_POST['imdbId'];
 $description = $_POST['description'];
+
+$genreName = Movie::get_genre_by_id($genre);
 
 $isDupeImdbID = Movie::is_Dupe_IMDB_ID($imdbId);
 
@@ -45,7 +51,7 @@ if (!$isDupeImdbID) {
             echo "Movie Title :". $movieTitle . "<br />";
             echo "Release Year: ". $releaseYear . "<br/>";
             echo "Description: ". $description . "<br/>";
-            echo "Genre: " . $genre . " <br/>";
+            echo "Genre: " . $genreName . " <br/>";
             echo "IMDB ID: " .$imdbId ."<br/> <br/>";
 
             echo "</p>";
