@@ -95,7 +95,6 @@ class Movie {
              WHERE imdbId = $imdbId";
 
         $statement = $db->prepare($dupeImdbIDQuery);
-        //$statement->bindValue(':imdbId', $imdbId);
         $statement->execute();
         $rowCount = $statement->rowCount();
 
