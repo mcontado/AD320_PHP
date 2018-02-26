@@ -92,9 +92,10 @@ class Movie {
         $db = Database::getDB();
 
         $dupeImdbIDQuery = "SELECT  * FROM MOVIE 
-             WHERE imdbId = :imdbId";
+             WHERE imdbId = $imdbId";
+
         $statement = $db->prepare($dupeImdbIDQuery);
-        $statement->bindValue(':imdbId', $imdbId);
+        //$statement->bindValue(':imdbId', $imdbId);
         $statement->execute();
         $rowCount = $statement->rowCount();
 

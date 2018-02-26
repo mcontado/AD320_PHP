@@ -1,10 +1,14 @@
 <?php
 header("refresh: 5; url=index.php");
+
 require('dbconnection.php');
 require('model/Movie.php');
 
 $movieTitle = $_POST['movieTitle'];
 $releaseYear = $_POST['releaseYear'];
+if (empty($releaseYear)) {
+    $releaseYear = NULL;
+}
 $imdbId = $_POST['imdbId'];
 $description = $_POST['description'];
 $genre = $_POST['genre'];
