@@ -12,9 +12,13 @@ $moviesByGenre = Movie::movies_by_genre($movieId);
     Genre:
     <?php
     $genresPerMovie = Movie::genres_per_movie($movieId);
+
     foreach ($genresPerMovie as $genre) :
-        echo $genre['genreName'] . ' ';
+        $strGenres .= $genre['genreName'] . ',';
     endforeach;
+
+    $strGenres = rtrim($strGenres, ',');
+    echo $strGenres;
     ?>
 </h3>
 

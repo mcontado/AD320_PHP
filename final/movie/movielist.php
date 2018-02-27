@@ -41,11 +41,17 @@ if ($action == 'delete_movie') {
                         </td>
                         <td>
                             <?php
+                            $strGenres = "";
                             $genresPerMovie = Movie::genres_per_movie($movie['movieId']);
                             foreach ($genresPerMovie as $genre) :
                             ?>
-                                <?php echo $genre['genreName']; ?>
-                            <?php endforeach; ?>
+                            <?php $strGenres .= $genre['genreName'] . ','; ?>
+
+                            <?php endforeach;
+                            $strGenres = rtrim($strGenres, ',');
+                            echo $strGenres;
+                            ?>
+
                         </td>
                         <td><?php echo $movie['releaseYear']; ?></td>
                         <td><?php echo $movie['imdbId']; ?></td>
