@@ -2,7 +2,14 @@
 
  $ch = curl_init();
 
- $url = "https://api.themoviedb.org/3/discover/movie?page=1&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=47096e9f413866406e8887e56411ced5";
+ $movieTitle = $_GET['searchbox'];
+
+ if ($movieTitle == NULL) {
+     $url = "https://api.themoviedb.org/3/discover/movie?page=1&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=47096e9f413866406e8887e56411ced5";
+ } else {
+     $parsedTitle = str_replace(' ', '%20', $movieTitle);
+     $url = "https://api.themoviedb.org/3/search/movie?api_key=47096e9f413866406e8887e56411ced5&language=en-US&query=".$parsedTitle."&page=1&include_adult=false";
+ }
 
  $baseImageUrl = "http://image.tmdb.org/t/p/w185/";
 
@@ -32,22 +39,27 @@
 
     <div class="row">
         <?php
+
             foreach($results as $k=>$v){
 
 //                foreach($v as $key => $value){
 //
 //                }
                 $posterPath = $v->poster_path;
-                $title = $v->title;
-                $overview = $v->overview;
 
-                $posterPathUrl = $baseImageUrl.$posterPath;
+                if ($posterPath != NULL) {
+                    $title = $v->title;
+                    $overview = $v->overview;
 
-                echo '<div class="col-md-2">';
-                echo '<div class="thumbnail">';
-                echo '<a href="'. $posterPathUrl .'" >';
-                echo '<img src= "'.$posterPathUrl.'"   alt="'.$title.'" style="width:100%">';
-                echo '</a> </div> </div> ';
+                    $posterPathUrl = $baseImageUrl.$posterPath;
+
+                    echo '<div class="col-md-2">';
+                    echo '<div class="thumbnail">';
+                    echo '<a href="'. $posterPathUrl .'" >';
+                    echo '<img src= "'.$posterPathUrl.'"   alt="'.$title.'" style="width:100%">';
+                    echo '</a> </div> </div> ';
+                }
+
 
             }
         ?>
