@@ -14,7 +14,6 @@ if ($action == 'delete_movie') {
     }
 }
 
-
 ?>
 
 <?php include 'templates/header.html'; ?>
@@ -38,9 +37,22 @@ if ($action == 'delete_movie') {
                     <tr>
                         <td>
                             <?php echo $movie['title']; ?> <br>
-                            <a href="relatedMovies.php?genreId=<?= $movie['genreId']; ?>" target="_self"> Related </a>
+                            <a href="relatedMovies.php?movieId=<?= $movie['movieId']; ?>" target="_self"> Related </a>
                         </td>
-                        <td><?php echo $movie['genreName']; ?></td>
+                        <td>
+                            <?php
+                            $strGenres = "";
+                            $genresPerMovie = Movie::genres_per_movie($movie['movieId']);
+                            foreach ($genresPerMovie as $genre) :
+                            ?>
+                            <?php $strGenres .= $genre['genreName'] . ','; ?>
+
+                            <?php endforeach;
+                            $strGenres = rtrim($strGenres, ',');
+                            echo $strGenres;
+                            ?>
+
+                        </td>
                         <td><?php echo $movie['releaseYear']; ?></td>
                         <td><?php echo $movie['imdbId']; ?></td>
                         <td><?php echo $movie['description']; ?></td>
