@@ -73,7 +73,7 @@
                     #$overview = preg_replace('/\s+?(\S+)?$/', '', substr($overview, 0, 201));
                     #echo $overview;
                     echo '        </p>';
-                    echo '        <p><a href="#" class="btn btn-info btn-xs" role="button">Add to Wishlist</a> </p>';
+                    echo '        <p><a href="#" class="btn btn-info btn-xs" role="button">Add to WatchList</a> </p>';
                     echo '    </div>';
                     echo '  </div>';
                     echo '</div>';
