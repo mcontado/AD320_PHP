@@ -24,7 +24,7 @@ $genres = Movie::select_all_genres();
 
             <div class="form-group">
                 <label for="imdbID">IMDB ID: </label>
-                <input type="text" class="form-control" id="imdbId" placeholder="Enter IMDB ID" name="imdbId" pattern="/tt\\d{7}/">
+                <input type="text" class="form-control" id="imdbId" placeholder="Enter IMDB ID" name="imdbId" pattern="tt\d{7}">
             </div>
 
             <div class="form-group">
