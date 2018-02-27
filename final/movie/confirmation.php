@@ -51,7 +51,15 @@ if (!$isDupeImdbID) {
             echo "Movie Title :". $movieTitle . "<br />";
             echo "Release Year: ". $releaseYear . "<br/>";
             echo "Description: ". $description . "<br/>";
-            echo "Genre: " . $genreName . " <br/>";
+
+            $genresPerMovie = Movie::genres_per_movie($lastInsertedMovieId);
+            foreach ($genresPerMovie as $genre) :
+                 $strGenres .= $genre['genreName'] . ',';
+            endforeach;
+            $strGenres = rtrim($strGenres, ',');
+            echo $strGenres;
+
+            echo "Genre: " . $strGenres . " <br/>";
             echo "IMDB ID: " .$imdbId ."<br/> <br/>";
 
             echo "</p>";
