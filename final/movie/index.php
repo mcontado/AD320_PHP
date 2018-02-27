@@ -37,7 +37,7 @@
 
     <h2>Discover Movies</h2>
 
-    <div class="row">
+
         <?php
 
             foreach($results as $k=>$v){
@@ -50,14 +50,34 @@
                 if ($posterPath != NULL) {
                     $title = $v->title;
                     $overview = $v->overview;
+                    $releaseDate = $v->release_date;
 
                     $posterPathUrl = $baseImageUrl.$posterPath;
 
+                    #echo '<div class="col-md-4">';
+                    #echo '#<div class="thumbnail">';
+                    #echo '<a href="'. $posterPathUrl .'" >';
+                    #echo '<img src= "'.$posterPathUrl.'"   alt="'.$title.'" style="width:100%">';
+                    #echo '</a> </div> </div> ';
+
+                    #echo '<div class="col-xs-18 col-sm-6 col-md-3">';
                     echo '<div class="col-md-2">';
-                    echo '<div class="thumbnail">';
-                    echo '<a href="'. $posterPathUrl .'" >';
-                    echo '<img src= "'.$posterPathUrl.'"   alt="'.$title.'" style="width:100%">';
-                    echo '</a> </div> </div> ';
+                    echo '  <div class="thumbnail">';
+                    echo '    <img src= "'.$posterPathUrl.'"   alt="'.$title.'" style="width:100%">';
+                    echo '     <div class="caption">';
+                    #echo '       <b>';
+                    #echo $title;
+                    #echo '       </b>';
+                    echo '        <p>';
+                    echo $releaseDate;
+                    #$overview = preg_replace('/\s+?(\S+)?$/', '', substr($overview, 0, 201));
+                    #echo $overview;
+                    echo '        </p>';
+                    echo '        <p><a href="#" class="btn btn-info btn-xs" role="button">Add to Wishlist</a> </p>';
+                    echo '    </div>';
+                    echo '  </div>';
+                    echo '</div>';
+
                 }
 
 
