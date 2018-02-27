@@ -119,8 +119,7 @@ class Movie {
     public static function is_Dupe_IMDB_ID($imdbId) {
         $db = Database::getDB();
 
-        $dupeImdbIDQuery = "SELECT  * FROM MOVIE 
-             WHERE imdbId = $imdbId";
+        $dupeImdbIDQuery = "SELECT  * FROM MOVIE WHERE imdbId = '$imdbId'";
 
         $statement = $db->prepare($dupeImdbIDQuery);
         $statement->execute();
