@@ -4,6 +4,16 @@ require('model/Movie.php');
 
 $movieId = $_GET['movieId'];
 $moviesByGenre = Movie::movies_by_genre($movieId);
+
+$action = filter_input(INPUT_POST, 'action');
+
+if ($action == 'delete_movie') {
+    $movieId = filter_input(INPUT_POST, 'movieId', FILTER_VALIDATE_INT);
+    if ($movieId != NULL) {
+        Movie::delete_movie($movieId);
+        header("Location: ./relatedMovies.php?movieId=$movieId");
+    }
+}
 ?>
 
 <?php include 'templates/header.html'; ?>
@@ -29,6 +39,7 @@ $moviesByGenre = Movie::movies_by_genre($movieId);
             <th>Release Year</th>
             <th>IMDB ID</th>
             <th>Description</th>
+            <th></th>
         </tr>
         </thead>
 
@@ -39,6 +50,17 @@ $moviesByGenre = Movie::movies_by_genre($movieId);
                 <td><?php echo $movie['releaseYear']; ?></td>
                 <td><?php echo $movie['imdbId']; ?></td>
                 <td><?php echo $movie['description']; ?></td>
+                <td>
+                    <form action="relatedMovies.php" method="post">
+                        <input type="hidden" name="action"
+                               value="delete_movie">
+
+                        <input type="hidden" name="movieId"
+                               value="<?php echo $movie['movieId']; ?>">
+
+                        <button type="submit" class="btn btn-default">Delete</button>
+                    </form>
+                </td>
             </tr>
         <?php endforeach; ?>
         </tbody>
