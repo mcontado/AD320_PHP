@@ -37,14 +37,11 @@
 
     <h2>Discover Movies</h2>
 
-
+    <div class="row">
         <?php
 
             foreach($results as $k=>$v){
 
-//                foreach($v as $key => $value){
-//
-//                }
                 $posterPath = $v->poster_path;
 
                 if ($posterPath != NULL) {
@@ -52,37 +49,44 @@
                     $overview = $v->overview;
                     $releaseDate = $v->release_date;
 
+                    $parts = explode('-', $releaseDate);
+                    $releaseYear = $parts[0];
+
                     $posterPathUrl = $baseImageUrl.$posterPath;
+        ?>
+                    <!-- <div class="col-md-3">
+                        <div class="card-deck">
+                            <div class="card">
+                                <img class="card-img-top" src="<?php echo $posterPathUrl; ?>" alt="<?php echo $title; ?>">
+                                <div class="card-body">
+                                    <h5 class="card-title"> <?php echo $title; ?> (<?php echo $releaseYear;?>) </h5>
+                                    <p class="card-text"><?php echo $overview; ?></p>
 
-                    #echo '<div class="col-md-4">';
-                    #echo '#<div class="thumbnail">';
-                    #echo '<a href="'. $posterPathUrl .'" >';
-                    #echo '<img src= "'.$posterPathUrl.'"   alt="'.$title.'" style="width:100%">';
-                    #echo '</a> </div> </div> ';
+                                </div>
+                                <div class="card-footer">
+                                    <p><a href="#" class="btn btn-info btn-xs" role="button">Add to WatchList</a> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
 
-                    #echo '<div class="col-xs-18 col-sm-6 col-md-3">';
-                    echo '<div class="col-md-2">';
-                    echo '  <div class="thumbnail">';
-                    echo '    <img src= "'.$posterPathUrl.'"   alt="'.$title.'" style="width:100%">';
-                    echo '     <div class="caption">';
-                    #echo '       <b>';
-                    #echo $title;
-                    #echo '       </b>';
-                    echo '        <p>';
-                    echo $releaseDate;
-                    #$overview = preg_replace('/\s+?(\S+)?$/', '', substr($overview, 0, 201));
-                    #echo $overview;
-                    echo '        </p>';
-                    echo '        <p><a href="#" class="btn btn-info btn-xs" role="button">Add to WatchList</a> </p>';
-                    echo '    </div>';
-                    echo '  </div>';
-                    echo '</div>';
+                    <div class="col-md-6">
+                                <div class="media">
+                                    <img class="align-self-start mr-3"  src="<?php echo $posterPathUrl; ?>" alt="<?php echo $title; ?>">
+                                    <div class="media-body">
+                                        <h5 class="mt-0"><?php echo $title; ?></h5>
+                                        <p> (<?php echo $releaseYear;?>) </p>
+                                        <p> <?php echo $overview; ?> </p>
+                                    </div>
+                                </div>
+                        <br>
+                    </div>
 
+             <?php
                 }
-
 
             }
         ?>
-    </div> <!-- end div row-->
+    </div>
 
 <?php include 'templates/footer.html'; ?>
