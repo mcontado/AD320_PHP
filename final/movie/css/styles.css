@@ -11,6 +11,10 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+table tr th {
+    width: 16.67%;
+}
+
 
 footer {
     margin: 0px auto;
@@ -47,27 +51,26 @@ p {
     font-size: 0.75em;
 }
 
-.thumbnail {
-    position: relative;
-    padding: 0px;
-    margin-bottom: 20px;
+.media {
+    border-radius: 5px;
 }
 
-.thumbnail img {
-    width: 100%;
+.media .media-body h5{
+    margin: auto;
 }
 
-a.list-group-item {
-    height:auto;
-    min-height:220px;
-}
-a.list-group-item.active small {
-    color:#fff;
-}
-.stars {
-    margin:20px auto 1px;
+.media .media-body h5.mt-0 {
+    margin-top: 10px;
 }
 
+.align-self-start {
+    border-radius: 5px;
+}
 
+.btn {
+    font-size: .7rem;
+}
 
-
+.btn-info {
+    margin: 5px;
+}
