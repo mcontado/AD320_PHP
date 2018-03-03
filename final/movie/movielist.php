@@ -64,7 +64,7 @@ if ($action == 'delete_movie') {
                                 <input type="hidden" name="movieId"
                                        value="<?php echo $movie['movieId']; ?>">
 
-                                <button type="submit" class="btn btn-default">Delete</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         </td>
                     </tr>
