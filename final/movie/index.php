@@ -1,5 +1,8 @@
 <?php
 
+require('dbconnection.php');
+require('model/Movie.php');
+
  $ch = curl_init();
 
  $movieTitle = $_GET['searchbox'];
@@ -67,6 +70,7 @@
                     $response = curl_exec($curl);
                     $err = curl_error($curl);
                     $json_outputResponse = json_decode($response);
+                    $imdbId = $json_outputResponse->imdb_id;
 
                     curl_close($curl);
 
@@ -86,7 +90,7 @@
                         <input type="hidden" id="movieTitle" name="movieTitle" value="<?php echo $title; ?>">
                         <input type="hidden" id="releaseYear" name="releaseYear" value="<?php echo $releaseYear; ?>">
                         <input type="hidden" name="genre_list_main" value="<?php echo $dataStringGenreIds; ?>">
-                        <input type="hidden" id="imdbId" name="imdbId" value="<?php echo $json_outputResponse->imdb_id; ?>">
+                        <input type="hidden" id="imdbId" name="imdbId" value="<?php echo $imdbId; ?>">
                         <input type="hidden" id="description" name="description" value="<?php echo $overview?>">
 
                             <div class="media" style="border: 1px solid lightgray">
@@ -96,9 +100,19 @@
                                     <p> (<?php echo $releaseYear;?>) </p>
                                     <p> <?php echo $overview; ?> </p>
                                 </div>
-                                <p>
-                                    <button type="submit" onclick="getImdbId(<?php echo $filmId; ?>)" class="btn btn-info btn-rounded" name="button_<?php echo $filmId?>">+ WatchList</button>
-                                </p>
+
+                                <?php
+                                if (!(Movie::is_Dupe_IMDB_ID($imdbId))) {
+                                    echo '<p>';
+                                    echo '<button type="submit" onclick="getImdbId(<?php echo $filmId; ?>)" class="btn btn-info btn-rounded" name="button_<?php echo $filmId?>">+ WatchList</button>';
+                                    echo '</p>';
+                                } else {
+                                    echo '<p>';
+                                    echo '<button type="button" class="btn btn-info btn-rounded" disabled>On list</button>';
+                                    echo '</p>';
+                                }
+                                ?>
+
                             </div>
                             <br>
 
