@@ -2,7 +2,6 @@
 
 require('dbconnection.php');
 require('model/Movie.php');
-$allMovies = Movie::list_all_movies();
 
  $ch = curl_init();
 
