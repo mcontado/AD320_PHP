@@ -21,11 +21,22 @@ if (!$isDupeImdbID) {
 
     $genreArrayList = filter_input(INPUT_POST, 'genre_list',
         FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+    $genreArrayListFromMain = filter_input(INPUT_POST, 'genre_list_main');
+    $dataArrayGenre = unserialize($genreArrayListFromMain);
 
     $values = array();
+
+    //Genre options from Movie Form Page
     if ($genreArrayList !== NULL) {
         foreach ($genreArrayList as $key => $value) {
             $values[] = '(' .$lastInsertedMovieId .',' .intval($value) . ')';
+        }
+    }
+
+    // Genre List from Main (index) page
+    if ($genreArrayListFromMain !== NULL) {
+        foreach ($dataArrayGenre as $key => $value) {
+            $values[] = '(' .$lastInsertedMovieId .',' . $value . ')';
         }
     }
 
@@ -57,7 +68,6 @@ if (!$isDupeImdbID) {
                  $strGenres .= $genre['genreName'] . ',';
             endforeach;
             $strGenres = rtrim($strGenres, ',');
-            echo $strGenres;
 
             echo "Genre: " . $strGenres . " <br/>";
             echo "IMDB ID: " .$imdbId ."<br/> <br/>";

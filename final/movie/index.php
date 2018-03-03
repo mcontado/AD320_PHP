@@ -42,27 +42,76 @@
 
             foreach($results as $k=>$v){
 
-//                foreach($v as $key => $value){
-//
-//                }
                 $posterPath = $v->poster_path;
 
                 if ($posterPath != NULL) {
                     $title = $v->title;
                     $overview = $v->overview;
+                    $releaseDate = $v->release_date;
+                    $filmId = $v->id;
+
+                    # TEST
+                    $curl = curl_init();
+
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => "https://api.themoviedb.org/3/movie/". $filmId ."?language=en-US&api_key=47096e9f413866406e8887e56411ced5",
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => "",
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 30,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => "GET",
+                        CURLOPT_POSTFIELDS => "{}",
+                    ));
+
+                    $response = curl_exec($curl);
+                    $err = curl_error($curl);
+                    $json_outputResponse = json_decode($response);
+
+                    curl_close($curl);
+
+                    #TEST
+
+                    $genreIds = $v->genre_ids;
+                    $dataStringGenreIds = serialize($genreIds);
+
+                    $parts = explode('-', $releaseDate);
+                    $releaseYear = $parts[0];
 
                     $posterPathUrl = $baseImageUrl.$posterPath;
+        ?>
+                <div class="col-md-6">
+                   <form name="addToWishListForm" action="confirmation.php" method="post" >
 
-                    echo '<div class="col-md-2">';
-                    echo '<div class="thumbnail">';
-                    echo '<a href="'. $posterPathUrl .'" >';
-                    echo '<img src= "'.$posterPathUrl.'"   alt="'.$title.'" style="width:100%">';
-                    echo '</a> </div> </div> ';
+                        <input type="hidden" id="movieTitle" name="movieTitle" value="<?php echo $title; ?>">
+                        <input type="hidden" id="releaseYear" name="releaseYear" value="<?php echo $releaseYear; ?>">
+                        <input type="hidden" name="genre_list_main" value="<?php echo $dataStringGenreIds; ?>">
+                        <input type="hidden" id="imdbId" name="imdbId" value="<?php echo $json_outputResponse->imdb_id; ?>">
+                        <input type="hidden" id="description" name="description" value="<?php echo $overview?>">
+
+                            <div class="media" style="border: 1px solid lightgray">
+                                <img class="align-self-start mr-3"  src="<?php echo $posterPathUrl; ?>" alt="<?php echo $title; ?>">
+                                <div class="media-body">
+                                    <h5 class="mt-0"><?php echo $title; ?></h5>
+                                    <p> (<?php echo $releaseYear;?>) </p>
+                                    <p> <?php echo $overview; ?> </p>
+                                </div>
+                                <p>
+                                    <button type="submit" onclick="getImdbId(<?php echo $filmId; ?>)" class="btn btn-info btn-rounded" name="button_<?php echo $filmId?>">+ WatchList</button>
+                                </p>
+                            </div>
+                            <br>
+
+                   </form>
+                </div>
+
+
+
+             <?php
                 }
-
 
             }
         ?>
-    </div> <!-- end div row-->
+    </div> <!-- end div row -->
 
 <?php include 'templates/footer.html'; ?>
