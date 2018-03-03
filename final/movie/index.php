@@ -80,7 +80,8 @@
 
                     $posterPathUrl = $baseImageUrl.$posterPath;
         ?>
-                    <form name="addToWishListForm" action="confirmation.php" method="post">
+                <div class="col-md-6">
+                   <form name="addToWishListForm" action="confirmation.php" method="post" >
 
                         <input type="hidden" id="movieTitle" name="movieTitle" value="<?php echo $title; ?>">
                         <input type="hidden" id="releaseYear" name="releaseYear" value="<?php echo $releaseYear; ?>">
@@ -88,7 +89,6 @@
                         <input type="hidden" id="imdbId" name="imdbId" value="<?php echo $json_outputResponse->imdb_id; ?>">
                         <input type="hidden" id="description" name="description" value="<?php echo $overview?>">
 
-                        <div class="col-md-6">
                             <div class="media" style="border: 1px solid lightgray">
                                 <img class="align-self-start mr-3"  src="<?php echo $posterPathUrl; ?>" alt="<?php echo $title; ?>">
                                 <div class="media-body">
@@ -101,9 +101,9 @@
                                 </p>
                             </div>
                             <br>
-                        </div>
 
-                    </form>
+                   </form>
+                </div>
 
 
 
