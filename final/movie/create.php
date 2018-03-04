@@ -1,5 +1,5 @@
 <?php
-require('dbconnection.php');
+require('config/dbconnection.php');
 require('model/Movie.php');
 
 $genres = Movie::select_all_genres();

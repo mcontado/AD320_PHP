@@ -1,6 +1,6 @@
 <?php
 
-require('dbconnection.php');
+require('config/dbconnection.php');
 require('model/Movie.php');
 require ('templates/functions.php');
 
