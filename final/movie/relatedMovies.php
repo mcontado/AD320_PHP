@@ -44,7 +44,7 @@ $moviesByGenre = Movie::movies_by_genre($movieId);
         </tbody>
     </table>
 
-    <button type="submit" class="btn btn-default" onclick="window.history.back();" > Go Back </button>
+    <button type="submit" class="btn btn-info btn-rounded" onclick="window.history.back();" > Go Back </button>
     <br> <br>
 
 <?php include 'templates/footer.html'; ?>
