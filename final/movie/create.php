@@ -8,7 +8,7 @@ $genres = Movie::select_all_genres();
 
 <?php include 'templates/header.html'; ?>
 
-        <h2>Movie Form</h2>
+        <h3>Movie Form</h3>
 
         <form name="wishListForm" action="confirmation.php" onsubmit="return validateForm()" method="post">
 

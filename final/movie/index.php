@@ -34,11 +34,20 @@ require('model/Movie.php');
 
     $results = $json_output->results;
 
+function truncate($text, $chars = 25) {
+    if (strlen($text) <= $chars) {
+        return $text;
+    }
+    $text = $text." ";
+    $text = substr($text,0,$chars);
+    $text = substr($text,0,strrpos($text,' '));
+    $text = $text."...";
+    return $text;
+}
+
 ?>
 
 <?php include 'templates/header.html'; ?>
-
-    <h2>Discover Movies</h2>
 
     <div class="row">
         <?php
@@ -49,9 +58,10 @@ require('model/Movie.php');
 
                 if ($posterPath != NULL) {
                     $title = $v->title;
-                    $overview = $v->overview;
+                    $overview = truncate($v->overview, 300);
                     $releaseDate = $v->release_date;
                     $filmId = $v->id;
+                    $voteAverage = $v->vote_average;
 
                     # TEST
                     $curl = curl_init();
@@ -98,13 +108,14 @@ require('model/Movie.php');
                                 <div class="media-body">
                                     <h5 class="mt-0"><?php echo $title; ?></h5>
                                     <p> (<?php echo $releaseYear;?>) </p>
-                                    <p> <?php echo $overview; ?> </p>
+                                    <p>  <?php echo $voteAverage; ?>/10</p>
+                                    <p class="overview"> <?php echo $overview; ?> </p>
                                 </div>
 
                                 <?php
                                 if (!(Movie::is_Dupe_IMDB_ID($imdbId))) {
                                     echo '<p>';
-                                    echo '<button type="submit" onclick="getImdbId(<?php echo $filmId; ?>)" class="btn btn-info btn-rounded" name="button_<?php echo $filmId?>">+ WatchList</button>';
+                                    echo '<button type="submit" class="btn btn-info btn-rounded"> + WatchList</button>';
                                     echo '</p>';
                                 } else {
                                     echo '<p>';

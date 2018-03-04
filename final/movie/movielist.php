@@ -18,7 +18,7 @@ if ($action == 'delete_movie') {
 
 <?php include 'templates/header.html'; ?>
 
-        <h2>My WatchList</h2>
+        <h3>My WatchList</h3>
 
         <table class="table table-hover">
             <thead>
