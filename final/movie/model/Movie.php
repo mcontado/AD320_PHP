@@ -91,6 +91,7 @@ class Movie {
         $statement->closeCursor();
     }
 
+
     public static function select_all_genres() {
         $db = Database::getDB();
 
@@ -131,8 +132,6 @@ class Movie {
             return false;
         }
     }
-
-
 }
 
 ?>

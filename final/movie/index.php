@@ -2,6 +2,7 @@
 
 require('dbconnection.php');
 require('model/Movie.php');
+require ('templates/functions.php');
 
  $ch = curl_init();
 
@@ -33,22 +34,10 @@ require('model/Movie.php');
     $json_output = json_decode($data);
 
     $results = $json_output->results;
-
-function truncate($text, $chars = 25) {
-    if (strlen($text) <= $chars) {
-        return $text;
-    }
-    $text = $text." ";
-    $text = substr($text,0,$chars);
-    $text = substr($text,0,strrpos($text,' '));
-    $text = $text."...";
-    return $text;
-}
-
 ?>
 
 <?php include 'templates/header.html'; ?>
-
+    <h3>Popular Movies</h3>
     <div class="row">
         <?php
 
@@ -58,7 +47,7 @@ function truncate($text, $chars = 25) {
 
                 if ($posterPath != NULL) {
                     $title = $v->title;
-                    $overview = truncate($v->overview, 300);
+                    $overview = $v->overview;
                     $releaseDate = $v->release_date;
                     $filmId = $v->id;
                     $voteAverage = $v->vote_average;
@@ -109,7 +98,7 @@ function truncate($text, $chars = 25) {
                                     <h5 class="mt-0"><?php echo $title; ?></h5>
                                     <p> (<?php echo $releaseYear;?>) </p>
                                     <p>  <?php echo $voteAverage; ?>/10</p>
-                                    <p class="overview"> <?php echo $overview; ?> </p>
+                                    <p class="overview"> <?php echo truncate($v->overview, 300); ?> </p>
                                 </div>
 
                                 <?php

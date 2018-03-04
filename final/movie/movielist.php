@@ -1,6 +1,7 @@
 <?php
 require('dbconnection.php');
 require('model/Movie.php');
+require ('templates/functions.php');
 
 $movies = Movie::list_all_movies();
 
@@ -34,7 +35,7 @@ if ($action == 'delete_movie') {
 
             <tbody>
                 <?php foreach ($movies as $movie) : ?>
-                    <tr>
+                    <tr class="delete_mem<?php echo $movie['movieId'];?>">
                         <td>
                             <?php echo $movie['title']; ?> <br>
                             <a href="relatedMovies.php?movieId=<?= $movie['movieId']; ?>" target="_self"> Related </a>
@@ -55,7 +56,7 @@ if ($action == 'delete_movie') {
                         </td>
                         <td><?php echo $movie['releaseYear']; ?></td>
                         <td><?php echo $movie['imdbId']; ?></td>
-                        <td><?php echo $movie['description']; ?></td>
+                        <td><?php echo truncate($movie['description'], 100); ?></td>
                         <td>
                             <form action="movielist.php" method="post">
                                 <input type="hidden" name="action"
@@ -64,7 +65,7 @@ if ($action == 'delete_movie') {
                                 <input type="hidden" name="movieId"
                                        value="<?php echo $movie['movieId']; ?>">
 
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger" id="<?php echo $movie['movieId'];?>">Delete</button>
                             </form>
                         </td>
                     </tr>
