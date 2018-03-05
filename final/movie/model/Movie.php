@@ -1,6 +1,22 @@
 <?php
 
 class Movie {
+
+    public $movieId;
+    public $movieTitle;
+    public $releaseYear;
+    public $imdbId;
+    public $description;
+
+    public function __construct($movieId,$movieTitle,$releaseYear,$imdbId,$description)
+    {
+        $this->movieId = $movieId;
+        $this->movieTitle = $movieTitle;
+        $this->releaseYear = $releaseYear;
+        $this->imdbId = $imdbId;
+        $this->description = $description;
+    }
+
     public static function list_all_movies() {
         $db = Database::getDB();
 
@@ -11,9 +27,22 @@ class Movie {
         $statement= $db->prepare($queryMovies);
         $statement->execute();
         $movies= $statement->fetchAll();
+
         $statement->closeCursor();
 
-        return $movies;
+        $list = [];
+
+        foreach ($movies as $movie) {
+            $list[] = new Movie($movie['movieId'],
+                                $movie['title'],
+                                $movie['releaseYear'],
+                                $movie['imdbId'],
+                                $movie['description']);
+        }
+
+        //return $movies;
+        return $list;
+
     }
 
     public static function genres_per_movie($movieId) {
