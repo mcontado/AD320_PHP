@@ -19,7 +19,9 @@ $genres = Movie::select_all_genres();
 
             <div class="form-group">
                 <label for="releaseYear">Release Year:</label>
-                <input type="text" class="form-control" id="releaseYear" placeholder="Enter release year" name="releaseYear">
+                <input type="text" class="form-control" id="releaseYear" placeholder="Enter release year"
+                       name="releaseYear"
+                       onchange="validateYear()">
             </div>
 
             <div class="form-group">
