@@ -10,6 +10,9 @@ if (empty($releaseYear)) {
     $releaseYear = NULL;
 }
 $imdbId = $_POST['imdbId'];
+if (empty($imdbId)) {
+    $imdbId = NULL;
+}
 $description = $_POST['description'];
 
 $genreName = Movie::get_genre_by_id($genre);
