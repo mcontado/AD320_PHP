@@ -55,31 +55,38 @@ if (!$isDupeImdbID) {
 <?php include 'templates/header.html'; ?>
 
         <?php
-        if ($isDupeImdbID) {
-            echo "<br/> <p>";
-            echo "Duplicate IMDB ID, please enter unique IMDB ID for each movie. ";
-            echo "</p>";
-        } else {
-            echo "<br/> <p>";
-            echo "The following book has been added to the Movie Wish List: " . "<br/><br/>";
-            echo "Movie Title :". $movieTitle . "<br />";
-            echo "Release Year: ". $releaseYear . "<br/>";
-            echo "Description: ". $description . "<br/>";
+        if ($isDupeImdbID) { ?>
+            <div class="card border-danger mb-3" style="max-width: 100rem;">
+                <div class="card-header">Duplicate IMDB ID</div>
+                <div class="card-body text-danger">
+                    <h5 class="card-title">Please enter unique IMDB ID for each movie.</h5>
+                </div>
+            </div>
+        <?php
+        } else {?>
+            <!--Panel-->
+            <div class="card border-dark mb-3" style="max-width: 100rem;">
+                <div class="card-header">Now added to your WatchList: </div>
+                <div class="card-body text-dark">
+                    <h5 class="card-title"><?php echo $movieTitle ?> (<?php echo $releaseYear ?>)</h5>
+                    <p class="card-text"><?php echo $description ?></p>
+                    <?php
+                    $genresPerMovie = Movie::genres_per_movie($lastInsertedMovieId);
+                        foreach ($genresPerMovie as $genre) :
+                            $strGenres .= $genre['genreName'] . ',';
+                        endforeach;
+                        $strGenres = rtrim($strGenres, ',');
+                        ?>
+                    <br>
+                    <p class="card-text">Genre: <?php echo $strGenres ?></p> <br>
+                    <p class="card-text">IMDB ID: <?php echo $imdbId ?></p>
+                </div>
+            </div>
+            <!--/.Panel-->
 
-            $genresPerMovie = Movie::genres_per_movie($lastInsertedMovieId);
-            foreach ($genresPerMovie as $genre) :
-                 $strGenres .= $genre['genreName'] . ',';
-            endforeach;
-            $strGenres = rtrim($strGenres, ',');
+        <?php } ?>
+        <br/>
+        <p> Redirecting to Home page in 5 seconds... </p>
 
-            echo "Genre: " . $strGenres . " <br/>";
-            echo "IMDB ID: " .$imdbId ."<br/> <br/>";
-
-            echo "</p>";
-        }
-        echo "<br/> <p>";
-        echo "Redirecting to Home page in 5 seconds...";
-        echo "</p>";
-        ?>
 
 <?php include 'templates/footer.html'; ?>
