@@ -38,6 +38,7 @@ require ('templates/functions.php');
 
 <?php include 'templates/header.html'; ?>
     <h3>Popular Movies</h3>
+
     <div class="row">
         <?php
 
