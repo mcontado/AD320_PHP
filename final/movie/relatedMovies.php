@@ -1,5 +1,5 @@
 <?php
-require('dbconnection.php');
+require('config/dbconnection.php');
 require('model/Movie.php');
 
 $movieId = $_GET['movieId'];

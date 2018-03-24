@@ -1,21 +1,20 @@
 <?php
-
-require('dbconnection.php');
+require('config/configuration.php');
+require('config/dbconnection.php');
 require('model/Movie.php');
 require ('templates/functions.php');
-
- $ch = curl_init();
 
  $movieTitle = $_GET['searchbox'];
 
  if ($movieTitle == NULL) {
-     $url = "https://api.themoviedb.org/3/discover/movie?page=1&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=47096e9f413866406e8887e56411ced5";
+     $url = "https://api.themoviedb.org/3/discover/movie?page=1&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=".API_KEY;
  } else {
      $parsedTitle = str_replace(' ', '%20', $movieTitle);
-     $url = "https://api.themoviedb.org/3/search/movie?api_key=47096e9f413866406e8887e56411ced5&language=en-US&query=".$parsedTitle."&page=1&include_adult=false";
+     $url = "https://api.themoviedb.org/3/search/movie?api_key=" .API_KEY."&language=en-US&query=".$parsedTitle."&page=1&include_adult=false";
  }
 
- $baseImageUrl = "http://image.tmdb.org/t/p/w185/";
+
+$ch = curl_init();
 
      //Set the URL that you want to GET by using the CURLOPT_URL option.
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -34,6 +33,8 @@ require ('templates/functions.php');
     $json_output = json_decode($data);
 
     $results = $json_output->results;
+
+
 ?>
 
 <?php include 'templates/header.html'; ?>
@@ -57,7 +58,7 @@ require ('templates/functions.php');
                     $curl = curl_init();
 
                     curl_setopt_array($curl, array(
-                        CURLOPT_URL => "https://api.themoviedb.org/3/movie/". $filmId ."?language=en-US&api_key=47096e9f413866406e8887e56411ced5",
+                        CURLOPT_URL => "https://api.themoviedb.org/3/movie/". $filmId ."?language=en-US&api_key=".API_KEY,
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => "",
                         CURLOPT_MAXREDIRS => 10,
@@ -82,7 +83,7 @@ require ('templates/functions.php');
                     $parts = explode('-', $releaseDate);
                     $releaseYear = $parts[0];
 
-                    $posterPathUrl = $baseImageUrl.$posterPath;
+                    $posterPathUrl = BASE_IMAGE_URL.$posterPath;
         ?>
                 <div class="col-md-6">
                    <form name="addToWishListForm" action="confirmation.php" method="post" >

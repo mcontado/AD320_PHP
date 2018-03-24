@@ -1,7 +1,7 @@
 <?php
 header("refresh: 5; url=index.php");
 
-require('dbconnection.php');
+require('config/dbconnection.php');
 require('model/Movie.php');
 
 $movieTitle = $_POST['movieTitle'];

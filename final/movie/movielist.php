@@ -1,5 +1,5 @@
 <?php
-require('dbconnection.php');
+require('config/dbconnection.php');
 require('model/Movie.php');
 require ('templates/functions.php');
 
@@ -35,15 +35,15 @@ if ($action == 'delete_movie') {
 
             <tbody>
                 <?php foreach ($movies as $movie) : ?>
-                    <tr class="delete_mem<?php echo $movie['movieId'];?>">
+                    <tr class="delete_mem<?php echo $movie->movieId;?>">
                         <td>
-                            <?php echo $movie['title']; ?> <br>
-                            <a href="relatedMovies.php?movieId=<?= $movie['movieId']; ?>" target="_self"> Related </a>
+                            <?php echo $movie->movieTitle; ?> <br>
+                            <a href="relatedMovies.php?movieId=<?= $movie->movieId; ?>" target="_self"> Related </a>
                         </td>
                         <td>
                             <?php
                             $strGenres = "";
-                            $genresPerMovie = Movie::genres_per_movie($movie['movieId']);
+                            $genresPerMovie = Movie::genres_per_movie($movie->movieId);
                             foreach ($genresPerMovie as $genre) :
                             ?>
                             <?php $strGenres .= $genre['genreName'] . ', '; ?>
@@ -54,18 +54,18 @@ if ($action == 'delete_movie') {
                             ?>
 
                         </td>
-                        <td><?php echo $movie['releaseYear']; ?></td>
-                        <td><?php echo $movie['imdbId']; ?></td>
-                        <td><?php echo truncate($movie['description'], 100); ?></td>
+                        <td><?php echo $movie->releaseYear; ?></td>
+                        <td><?php echo $movie->imdbId; ?></td>
+                        <td><?php echo truncate($movie->description, 100); ?></td>
                         <td>
                             <form action="movielist.php" method="post">
                                 <input type="hidden" name="action"
                                        value="delete_movie">
 
                                 <input type="hidden" name="movieId"
-                                       value="<?php echo $movie['movieId']; ?>">
+                                       value="<?php echo $movie->movieId; ?>">
 
-                                <button type="submit" class="btn btn-danger" id="<?php echo $movie['movieId'];?>">Delete</button>
+                                <button type="submit" class="btn btn-danger" id="<?php echo $movie->movieId;?>">Delete</button>
                             </form>
                         </td>
                     </tr>
